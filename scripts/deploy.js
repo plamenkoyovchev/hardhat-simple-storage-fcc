@@ -1,4 +1,5 @@
 const { run, network } = require("hardhat");
+const GOERLI_CHAIN_ID = 5;
 
 async function main() {
 	const simpleStorageContractFactory = await ethers.getContractFactory(
@@ -11,7 +12,10 @@ async function main() {
 		`Contract deployed to: ${simpleStorageContract.address} address.`
 	);
 
-	if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+	if (
+		network.config.chainId === GOERLI_CHAIN_ID &&
+		process.env.ETHERSCAN_API_KEY
+	) {
 		// Wait for 6 blocks to be mined
 		await simpleStorageContract.deployTransation.wait(6);
 
