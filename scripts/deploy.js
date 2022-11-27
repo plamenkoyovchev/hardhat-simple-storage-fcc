@@ -1,3 +1,5 @@
+const { run, network } = require("hardhat");
+
 async function main() {
 	const simpleStorageContractFactory = await ethers.getContractFactory(
 		"SimpleStorage"
@@ -9,13 +11,26 @@ async function main() {
 		`Contract deployed to: ${simpleStorageContract.address} address.`
 	);
 
-	let favNumber = await simpleStorageContract.retrieve();
-	console.log(`Favorite number is: ${favNumber}`);
+	if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+		// Wait for 6 blocks to be mined
+		await simpleStorageContract.deployTransation.wait(6);
 
-	await simpleStorageContract.store(73);
+		await verify(simpleStorageContract.address, []);
+	}
+}
 
-	favNumber = await simpleStorageContract.retrieve();
-	console.log(`Favorite number is: ${favNumber}`);
+async function verify(contractAddress, args) {
+	console.log("Verifying contract ...");
+
+	try {
+		// https://github.com/NomicFoundation/hardhat/blob/main/packages/hardhat-etherscan/src/constants.ts
+		await run("verify:verify", {
+			address: contractAddress,
+			constructorArguments: args,
+		});
+	} catch (error) {
+		console.error(`Contract verification error: ${error}`);
+	}
 }
 
 main()
