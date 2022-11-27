@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "deploy:ganache": "npx hardhat compile && npx hardhat run scripts/deploy.js --network ganache"
+    "deploy:to": "npx hardhat compile && npx hardhat run scripts/deploy.js --network "
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
