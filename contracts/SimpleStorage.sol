@@ -2,14 +2,20 @@
 
 pragma solidity ^0.8.7;
 
-contract SimpleStorage {
-    uint256 favoriteNumber;
+import "hardhat/console.sol";
 
-    constructor() {
-        favoriteNumber = 8;
+contract SimpleStorage {
+    uint256 s_lastStoredFavoriteNumber;
+    mapping(address => uint) s_addressToFavoriteNumber;
+
+    function store(uint number) external {
+        console.log("Storing number %s", number);
+
+        s_lastStoredFavoriteNumber = number;
+        s_addressToFavoriteNumber[msg.sender] = number;
     }
 
     function retrieve() public view returns (uint256) {
-        return favoriteNumber;
+        return s_addressToFavoriteNumber[msg.sender];
     }
 }

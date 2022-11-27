@@ -9,7 +9,12 @@ async function main() {
 		`Contract deployed to: ${simpleStorageContract.address} address.`
 	);
 
-	const favNumber = await simpleStorageContract.retrieve();
+	let favNumber = await simpleStorageContract.retrieve();
+	console.log(`Favorite number is: ${favNumber}`);
+
+	await simpleStorageContract.store(73);
+
+	favNumber = await simpleStorageContract.retrieve();
 	console.log(`Favorite number is: ${favNumber}`);
 }
 
