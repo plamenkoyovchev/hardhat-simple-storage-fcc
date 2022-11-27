@@ -1,6 +1,7 @@
 const { expect } = require("chai");
 const { loadFixture } = require("ethereum-waffle");
 const { ethers } = require("hardhat");
+require("dotenv").config();
 
 describe("SimpleStorage", function () {
 	async function deployTokenFixture() {
@@ -20,11 +21,11 @@ describe("SimpleStorage", function () {
 		};
 	}
 
-	it("Should deploy contract and test owner initial favorite number 77", async function () {
+	it("Should deploy contract and test owner initial favorite number 53", async function () {
 		const { simpleStorageContract } = await loadFixture(deployTokenFixture);
 
 		const ownerFavoriteNumber = await simpleStorageContract.retrieve();
-		expect(ownerFavoriteNumber).to.equal(77);
+		expect(ownerFavoriteNumber).to.equal(process.env.INITIAL_FAVORITE_NUMBER);
 	});
 
 	it("Should store addr1 favorite number 55", async function () {

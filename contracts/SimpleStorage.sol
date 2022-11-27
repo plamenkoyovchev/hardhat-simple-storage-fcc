@@ -8,10 +8,6 @@ contract SimpleStorage {
     uint256 s_lastStoredFavoriteNumber;
     mapping(address => uint) s_addressToFavoriteNumber;
 
-    constructor() {
-        s_addressToFavoriteNumber[msg.sender] = 77;
-    }
-
     function store(uint number) external {
         console.log("Storing number %s", number);
 
