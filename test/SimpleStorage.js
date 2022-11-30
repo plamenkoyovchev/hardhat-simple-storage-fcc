@@ -21,7 +21,7 @@ describe("SimpleStorage", function () {
 		};
 	}
 
-	it("Should deploy contract and test owner initial favorite number 53", async function () {
+	it(`Should deploy contract and test owner initial favorite number ${process.env.INITIAL_FAVORITE_NUMBER}`, async function () {
 		const { simpleStorageContract } = await loadFixture(deployTokenFixture);
 
 		const ownerFavoriteNumber = await simpleStorageContract.retrieve();

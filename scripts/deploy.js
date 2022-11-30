@@ -16,8 +16,9 @@ async function main() {
 		network.config.chainId === GOERLI_CHAIN_ID &&
 		process.env.ETHERSCAN_API_KEY
 	) {
+		console.log("Waiting for 6 blocks to be mined ...");
 		// Wait for 6 blocks to be mined
-		await simpleStorageContract.deployTransation.wait(6);
+		await simpleStorageContract.deployTransaction.wait(6);
 
 		await verify(simpleStorageContract.address, []);
 	}
