@@ -2,6 +2,7 @@ require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
+require("./tasks/block-number");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
