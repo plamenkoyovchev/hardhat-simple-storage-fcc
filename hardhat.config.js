@@ -4,6 +4,8 @@ require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 require("./tasks/block-number");
 require("hardhat-gas-reporter");
+require("solidity-coverage");
+
 /** @type import('hardhat/config').HardhatUserConfig */
 
 const GOERLI_RPC_URL = process.env.RPC_URL;
