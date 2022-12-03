@@ -1,6 +1,8 @@
 node_modules
-.env*
+.env
 
 #Hardhat files
 artifacts
 cache
+
+gas-report.txt
